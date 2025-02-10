@@ -1,5 +1,6 @@
-﻿<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.23">
-  <POU Name="FB_ClientConnection" Id="{a6c2c808-6e8b-4998-a86b-c39b02d74fa3}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ClientConnection" Id="{a6c2c808-6e8b-4998-a86b-c39b02d74fa3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ClientConnection
 VAR_IN_OUT
 	fbTx 			: FB_FrameFifo;(* TX fifo *)
@@ -106,7 +107,7 @@ END_VAR]]></Declaration>
 					fbSend( bExecute := FALSE );
 					fbSend(	sSrvNetID := sSrvNetID, hSocket	:= fbConnect.hSocket,
 							pSrc	:= ADR( sTxFrame ),
-							cbLen	:= INT_TO_UDINT(LEN( sTxFrame )) + 1,(* String length inclusive the zero delimiter *)
+							cbLen	:= INT_TO_UDINT(LEN( sTxFrame )),(* String length inclusive the zero delimiter *)
 							bExecute:= TRUE );
 					bSndBusy := TRUE;
 				END_IF
@@ -151,7 +152,7 @@ END_VAR]]></Declaration>
 								nLenOfString := 0;(* Reset string length *)
 								bEndOfString := FALSE;
 								REPEAT 
-									IF rxBuffer[nLenOfString] = 0 THEN(* String end delimiter found *)
+									IF rxBuffer[nLenOfString] = 16#0A THEN(* String end delimiter found *)
 										bEndOfString := TRUE;
 									END_IF
 									nLenOfString := nLenOfString + 1;
@@ -224,6 +225,9 @@ END_VAR]]></Declaration>
 END_CASE
 ]]></ST>
     </Implementation>
-    <ObjectProperties />
+    <LineIds Name="FB_ClientConnection">
+      <LineId Id="3" Count="181" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

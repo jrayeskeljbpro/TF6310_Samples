@@ -1,5 +1,6 @@
-﻿<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.23">
-  <POU Name="FB_ClientApplication" Id="{e1f59b55-4ed3-4201-89c5-639c8eca1b2b}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ClientApplication" Id="{e1f59b55-4ed3-4201-89c5-639c8eca1b2b}" SpecialFunc="None">
     <Declaration><![CDATA[(*------------- Simple TCP/IP client application. Adapt this code to match your needs. -----*)
 FUNCTION_BLOCK FB_ClientApplication
 VAR_IN_OUT
@@ -21,7 +22,7 @@ IF fbSndTimer.Q THEN(* Send string to server *)
 	fbSndTimer( IN := FALSE );
 
 	nCounter := nCounter  + 1;
-	sToServer := CONCAT( 'Client message: ', UDINT_TO_STRING(nCounter) );
+	sToServer := 'PL.FB$0D$0A';
  
 	fbTx.AddTail( sPut := sToServer );(* Put string to the tx fifo *)
 	IF NOT fbTx.bOk THEN(* TX fifo overflow => log error *)
@@ -60,6 +61,9 @@ END_REPEAT
 
 ]]></ST>
     </Implementation>
-    <ObjectProperties />
+    <LineIds Name="FB_ClientApplication">
+      <LineId Id="3" Count="42" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

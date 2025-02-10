@@ -24,7 +24,7 @@
     <CompilerDefines />
     <dynamic_memory_size>
     </dynamic_memory_size>
-    <ProgramVersion>3.1.0.5</ProgramVersion>
+    <ProgramVersion>3.1.4026.13</ProgramVersion>
     <SccProjectName>SAK</SccProjectName>
     <SccProvider>SAK</SccProvider>
     <SccAuxPath>SAK</SccAuxPath>
@@ -67,9 +67,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TcpIp_CLIENT.tmc">
+    <None Include="TcpIp_CLIENT.tmc">
       <SubType>Content</SubType>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_Standard">
